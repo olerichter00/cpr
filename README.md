@@ -20,7 +20,6 @@
 - Adds the Jira ticket number and a description to the PR body (using the repository's PR template if it exists).
 - Opens the PR in the browser.
 
-
 ### Setup
 
 - Make sure [Deno](https://deno.land/manual/getting_started/installation) and [GitHub CLI](https://github.com/cli/cli) are installed.
@@ -35,9 +34,9 @@ Usage:
   $ cpr <PR TITLE> [options]
 
 Options:
-  -t, --ticket <ticket>            Provide a ticket number or url 
-  -d, --description <description>  Provide a PR description 
-  -h, --help                       Display this message 
+  -t, --ticket <ticket>            Provide a ticket number or url
+  -d, --description <description>  Provide a PR description
+  -h, --help                       Display this message
 ```
 
 ### Examples
@@ -59,9 +58,9 @@ my-file.txt
 
 ### Development
 
-- `make run`:      executes `index.ts`
-- `make test`:     runs tests
-- `make format`:   formats all files
-- `make debug`:    runs the debugger starting in `index.ts`
-- `make bundle`:   bundles into a single file `build/index`
-- `make compile`:  compiles to executable
+- `make run`: executes `index.ts`
+- `make test`: runs tests
+- `make format`: formats all files
+- `make debug`: runs the debugger starting in `index.ts`
+- `make bundle`: bundles into a single file `build/index`
+- `make compile`: compiles to executable
