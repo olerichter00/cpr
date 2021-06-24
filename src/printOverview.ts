@@ -7,11 +7,12 @@ export const printOverview = async (prTitle: string, branchName: string, prDescr
     Deno.exit(1)
   }
 
+  console.log("\x1b[36m%s\x1b[0m", "Branch Name:", branchName)
+
   console.log("\x1b[36m%s\x1b[0m", "PR Title:", prTitle)
 
-  console.log("\x1b[36m%s\x1b[0m", "PR Description:", prDescription)
-
-  console.log("\x1b[36m%s\x1b[0m", "Branch Name:", branchName)
+  console.log("\x1b[36m%s\x1b[0m", "PR Description:")
+  console.log(prDescription)
 
   console.log("\x1b[36m%s\x1b[0m", "Included Files: ")
 
