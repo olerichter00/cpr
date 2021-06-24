@@ -31,3 +31,17 @@ export const promptString = async (question: string) => {
     return line
   }
 }
+
+export const promptMultilineString = async (question: string) => {
+  const text = new TextEncoder().encode(question)
+
+  writeAll(Deno.stdout, text)
+
+  let result = ""
+
+  for await (const line of readLines(Deno.stdin)) {
+    result += line + "\n"
+
+    if (result.includes("\n\n")) return result
+  }
+}
