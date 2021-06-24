@@ -15,10 +15,7 @@ export const createPRBody = async (
 
   try {
     prBody = await Deno.readTextFile("./docs/pull_request_template.md")
-    console.log("Detected pull request template.")
-  } catch {
-    console.log("No pull request template detected.")
-  }
+  } catch {}
 
   prBody = prBody.replace("[]", `[${ticketNumber}]`)
   const type = prTitle.split(":")[0]

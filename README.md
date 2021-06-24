@@ -1,7 +1,7 @@
 <br />
 
 <h1 align="center">
-  <img src="./logo.svg">
+  <img src="./images/logo.svg">
   <br />
   <br />
   Create Pull Request
@@ -20,7 +20,6 @@
 - Adds the Jira ticket number and a description to the PR body (using the repository's PR template if it exists).
 - Opens the PR in the browser.
 
-
 ### Setup
 
 - Make sure [Deno](https://deno.land/manual/getting_started/installation) and [GitHub CLI](https://github.com/cli/cli) are installed.
@@ -35,33 +34,28 @@ Usage:
   $ cpr <PR TITLE> [options]
 
 Options:
-  -t, --ticket <ticket>            Provide a ticket number or url 
-  -d, --description <description>  Provide a PR description 
-  -h, --help                       Display this message 
+  -t, --ticket <ticket>            Provide a ticket number or url
+  -d, --description <description>  Provide a PR description
+  -h, --help                       Display this message
 ```
 
-### Examples
+#### Example
 
 ```
 cpr feature: my new cool feature -t CX-1234 -d "My PR Descryption"
-cpr feature: my new cool feature -t https://artsyproduct.atlassian.net/browse/CX-1234
 ```
 
-which will create the following Pull Request:
 
-```
-PR Title: feature: my new cool feature
-PR Description: My PR Description
-Branch Name: ${YOUR_PREFIX}/CX-1234/my-new-cool-feature
-Included Files:
-my-file.txt
-```
+which will create the following PR:
+
+| <img src="./images/screenshot.png"> |
+| ------ |
 
 ### Development
 
-- `make run`:      executes `index.ts`
-- `make test`:     runs tests
-- `make format`:   formats all files
-- `make debug`:    runs the debugger starting in `index.ts`
-- `make bundle`:   bundles into a single file `build/index`
-- `make compile`:  compiles to executable
+- `make run`: executes `index.ts`
+- `make test`: runs tests
+- `make format`: formats all files
+- `make debug`: runs the debugger starting in `index.ts`
+- `make bundle`: bundles into a single file `build/index`
+- `make compile`: compiles to executable
