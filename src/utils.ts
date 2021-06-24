@@ -42,6 +42,6 @@ export const promptMultilineString = async (question: string) => {
   for await (const line of readLines(Deno.stdin)) {
     result += line + "\n"
 
-    if (result.includes("\n\n")) return result
+    if (result.includes("\n\n")) return result.replace("\n\n", "")
   }
 }
