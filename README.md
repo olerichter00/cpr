@@ -8,7 +8,7 @@
   <br />
 </h1>
 <h3 align="center">
-  A tool to create Pull Requests from current changes with one command
+  A tool to create pull requests from current changes with one command.
 </h3>
 <br />
 
