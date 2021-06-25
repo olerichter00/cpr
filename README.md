@@ -16,7 +16,7 @@
 
 - Creates the branch `PREFIX/JIRA_TICKET_NUMBER/your-commit-message`.
 - Commits all changes.
-- Creates a Pull Request.
+- Creates a pull request.
 - Adds the Jira ticket number and a description to the PR body (using the repository's PR template if it exists).
 - Opens the PR in the browser.
 
