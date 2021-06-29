@@ -5,7 +5,9 @@ export const executeCommands = async (prTitle: string, branchName: string, prBod
   await exec(`bit checkout -b ${branchName}`)
 
   await exec(`git add .`)
-  await exec(`git commit -m "${prTitle}"`)
+  await exec(`git commit -m "${prTitle}" --no-verify`)
+
+  // TODO exit if fail
 
   console.log(`Pushing ${branchName}...`)
   await exec(`git push --set-upstream origin ${branchName} --no-verify`)
