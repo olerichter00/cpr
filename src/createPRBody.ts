@@ -6,12 +6,15 @@ export const prTypes: any = {
   documentation: "Documentation",
 }
 
+const TYPE_PLACEHOLDER = "TYPE"
+const DESCRIPTION_PLACEHOLDER = "<!-- Implementation description -->"
+
 export const createPRBody = async (
   prTitle: string,
   ticketNumber: string,
   prDescription: string,
 ) => {
-  let prBody = "Addresses []"
+  let prBody = ticketNumber ? "Addresses []" : ""
 
   try {
     prBody = await Deno.readTextFile("./docs/pull_request_template.md")
@@ -21,12 +24,12 @@ export const createPRBody = async (
   const type = prTitle.split(":")[0]
 
   if (type && !type.includes(" ")) {
-    prBody = prBody.replace("**TYPE**", prTypes[type] || type)
+    prBody = prBody.replace(TYPE_PLACEHOLDER, prTypes[type] || type)
   }
 
   if (prDescription) {
-    if (prBody.includes("<!-- Implementation description -->")) {
-      prBody = prBody.replace("<!-- Implementation description -->", prDescription)
+    if (prBody.includes(DESCRIPTION_PLACEHOLDER)) {
+      prBody = prBody.replace(DESCRIPTION_PLACEHOLDER, prDescription)
     } else {
       prBody += "\n\n" + prDescription
     }
