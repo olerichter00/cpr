@@ -5,9 +5,22 @@ import { printOverview } from "./printOverview.ts"
 import { parseArguments } from "./parseArguments.ts"
 import { BRANCH_PREFIX } from "./constants.ts"
 import { cli } from "./cli.ts"
+import { isOnMainBranch, switchBackToMainBranch } from "./utils.ts"
 
 const main = async () => {
   const { args, options } = cli()
+
+  if (!(await isOnMainBranch())) {
+    console.error("\x1b[31m%s\x1b[0m", "You're not on the main branch.")
+
+    await switchBackToMainBranch()
+
+    // add something
+
+    if (!(await isOnMainBranch())) {
+      Deno.exit(1)
+    }
+  }
 
   const { ticketNumber, prTitle, prDescription } = await parseArguments({ args, options })
 

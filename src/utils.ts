@@ -1,6 +1,8 @@
 import { readLines } from "https://deno.land/std@0.76.0/io/bufio.ts"
 import { writeAll } from "https://deno.land/std/io/util.ts"
 // import { slugify } from "https://deno.land/x/slugify/mod.ts"
+import { exec as execute } from "https://deno.land/x/execute@v1.1.0/mod.ts"
+import { exec } from "https://deno.land/x/exec@0.0.5/mod.ts"
 
 export const slugify = (input: string): string => {
   let str = input
@@ -45,3 +47,19 @@ export const promptMultilineString = async (question: string) => {
     if (result.includes("\n\n")) return result.replace("\n\n", "")
   }
 }
+
+export const switchBackToMainBranch = async () => {
+  const allBranches = await execute("git branch -a")
+
+  const mainBranch = allBranches.includes("master") ? "master" : "main"
+
+  const switchBackToMainBranch = await promptString(`Switch back to ${mainBranch}? (y,N) `)
+
+  if (switchBackToMainBranch === "y") {
+    console.log(`Switching to ${mainBranch}`)
+    await exec(`git checkout ${mainBranch}`)
+  }
+}
+
+export const isOnMainBranch = async () =>
+  ["main", "master"].includes(await execute("git branch --show-current"))

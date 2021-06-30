@@ -5,6 +5,7 @@
     "editor.formatOnPaste": true,
     "deno.lint": true,
     "deno.suggest.imports.hosts": {
-        "https://dev.jspm.io": false
+        "https://dev.jspm.io": false,
+        "https://deno.land": false
     },
 }
