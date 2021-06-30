@@ -5,12 +5,25 @@ export const executeCommands = async (prTitle: string, branchName: string, prBod
   await exec(`bit checkout -b ${branchName}`)
 
   await exec(`git add .`)
-  await exec(`git commit -m "${prTitle}" --no-verify`)
 
-  // TODO exit if fail
+  const {
+    status: { success: commitSuccess },
+  } = await exec(`git commit -m "${prTitle}"`)
+
+  if (!commitSuccess) {
+    console.error("\x1b[31m%s\x1b[0m", "Couldn't commit changes.")
+    Deno.exit(1)
+  }
 
   console.log(`Pushing ${branchName}...`)
-  await exec(`git push --set-upstream origin ${branchName} --no-verify`)
+  const {
+    status: { success: pushSuccess },
+  } = await exec(`git push --set-upstream origin ${branchName} --no-verify`)
+
+  if (!pushSuccess) {
+    console.error("\x1b[31m%s\x1b[0m", "Couldn't push changes.")
+    Deno.exit(1)
+  }
 
   console.log(
     await execute({
