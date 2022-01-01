@@ -31,7 +31,9 @@ export const createPRBody = async (
     if (prBody.includes(DESCRIPTION_PLACEHOLDER)) {
       prBody = prBody.replace(DESCRIPTION_PLACEHOLDER, prDescription)
     } else {
-      prBody += "\n\n" + prDescription
+      prBody += "\n\n"
+      if (ticketNumber) prBody += "## Description" + "\n\n"
+      prBody += prDescription
     }
   }
 

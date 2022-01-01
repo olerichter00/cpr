@@ -9,9 +9,19 @@ import { cli } from "./cli.ts"
 const main = async () => {
   const { args, options } = cli()
 
-  const { ticketNumber, prTitle, prDescription } = await parseArguments({ args, options })
+  const {
+    ticketNumber,
+    prTitle,
+    prDescription: rowPrDescription,
+  } = await parseArguments({ args, options })
 
   const branchName = createBranchName(BRANCH_PREFIX, ticketNumber, prTitle)
+
+  let prDescription = rowPrDescription
+
+  if (!prDescription) {
+    prDescription = prTitle.includes(": ") ? prTitle.split(": ")[1] : prTitle
+  }
 
   const prBody = await createPRBody(prTitle, ticketNumber, prDescription)
 
