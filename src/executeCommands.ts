@@ -9,7 +9,7 @@ export const executeCommands = async (prTitle: string, branchName: string, prBod
 
   const {
     status: { success: commitSuccess },
-  } = await exec(`git commit -m "${prTitle}"`)
+  } = await exec(`git commit -m "${prTitle} --no-verify"`)
 
   if (!commitSuccess) {
     console.error("\x1b[31m%s\x1b[0m", "Couldn't commit changes.")
