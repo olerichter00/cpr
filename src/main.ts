@@ -21,6 +21,7 @@ const main = async () => {
 
   if (!prDescription) {
     prDescription = prTitle.includes(": ") ? prTitle.split(": ")[1] : prTitle
+    prDescription += "."
   }
 
   const prBody = await createPRBody(prTitle, ticketNumber, prDescription)
