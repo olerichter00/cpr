@@ -31,7 +31,7 @@ export const createPRBody = async (
     if (prBody.includes(DESCRIPTION_PLACEHOLDER)) {
       prBody = prBody.replace(DESCRIPTION_PLACEHOLDER, prDescription)
     } else {
-      prBody += "\n\n" + prDescription
+      prBody += "\n\n" + "## Description" + "\n\n" + prDescription
     }
   }
 
