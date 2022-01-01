@@ -32,7 +32,7 @@ export const createPRBody = async (
       prBody = prBody.replace(DESCRIPTION_PLACEHOLDER, prDescription)
     } else {
       prBody += "\n\n"
-      if (ticketNumber) prBody += "## Description" + "\n\n"
+      prBody += "## Description" + "\n\n"
       prBody += prDescription
     }
   }
