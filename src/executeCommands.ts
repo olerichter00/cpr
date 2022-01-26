@@ -35,7 +35,7 @@ export const executeCommands = async (prTitle: string, branchName: string, prBod
   await exec("gh pr view -w")
 
   const allBranches = await execute("git branch -a")
-  const mainBranch = allBranches.includes("master") ? "master" : "main"
+  const mainBranch = allBranches.includes("main") ? "main" : "master"
 
   const switchBackToMainBranch = await promptString(`Switch back to ${mainBranch}? (y,N) `)
 
