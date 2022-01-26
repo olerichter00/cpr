@@ -1,5 +1,5 @@
-import { exec as execute } from "https://deno.land/x/execute@v1.1.0/mod.ts"
 import { exec } from "https://deno.land/x/exec/mod.ts"
+import { exec as execute } from "https://deno.land/x/execute@v1.1.0/mod.ts"
 import { promptString } from "./utils.ts"
 
 export const executeCommands = async (prTitle: string, branchName: string, prBody: string) => {
@@ -35,7 +35,7 @@ export const executeCommands = async (prTitle: string, branchName: string, prBod
   await exec("gh pr view -w")
 
   const allBranches = await execute("git branch -a")
-  const mainBranch = allBranches.includes("master") ? "master" : "main"
+  const mainBranch = allBranches.includes("main") ? "main" : "master"
 
   const switchBackToMainBranch = await promptString(`Switch back to ${mainBranch}? (y,N) `)
 
