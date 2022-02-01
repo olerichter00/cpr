@@ -23,7 +23,7 @@ export const createPRBody = async (
   prBody = prBody.replace("[]", `[${ticketNumber}]`)
 
   if (!ticketNumber && prBody.includes("This PR resolves []")) {
-    prBody.replace("This PR resolves []", "")
+    prBody = prBody.replace("This PR resolves []", "")
   }
 
   const type = prTitle.split(":")[0]
