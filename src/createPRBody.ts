@@ -7,7 +7,8 @@ export const prTypes: any = {
 }
 
 const TYPE_PLACEHOLDER = "TYPE"
-const DESCRIPTION_PLACEHOLDER = "<!-- Implementation description -->"
+const DESCRIPTION_PLACEHOLDER =
+  "<!-- Info, implementation, how to get there, before & after screenshots & videos, follow-up work, etc -->"
 
 export const createPRBody = async (
   prTitle: string,
