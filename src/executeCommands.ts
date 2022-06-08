@@ -2,14 +2,19 @@ import { exec } from "https://deno.land/x/exec/mod.ts"
 import { exec as execute } from "https://deno.land/x/execute@v1.1.0/mod.ts"
 import { promptString } from "./utils.ts"
 
-export const executeCommands = async (prTitle: string, branchName: string, prBody: string) => {
+export const executeCommands = async (
+  prTitle: string,
+  branchName: string,
+  prBody: string,
+  noVerify: boolean,
+) => {
   await exec(`bit checkout -b ${branchName}`)
 
   await exec(`git add .`)
 
   const {
     status: { success: commitSuccess },
-  } = await exec(`git commit -m "${prTitle}"`)
+  } = await exec(`git commit -m "${prTitle}"` + noVerify ? " --no-verify" : "")
 
   if (!commitSuccess) {
     console.error("\x1b[31m%s\x1b[0m", "Couldn't commit changes.")
@@ -17,9 +22,10 @@ export const executeCommands = async (prTitle: string, branchName: string, prBod
   }
 
   console.log(`Pushing ${branchName}...`)
+
   const {
     status: { success: pushSuccess },
-  } = await exec(`git push --set-upstream origin ${branchName}`)
+  } = await exec(`git push --set-upstream origin ${branchName}` + noVerify ? " --no-verify" : "")
 
   if (!pushSuccess) {
     console.error("\x1b[31m%s\x1b[0m", "Couldn't push changes.")
