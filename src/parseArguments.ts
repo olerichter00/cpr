@@ -3,13 +3,15 @@ import { promptMultilineString, promptString } from "./utils.ts"
 export const parseArguments = async ({ args, options }: any) => {
   const ticketUrl = await parseOrPrompt("Ticket", options.ticket)
 
-  const prTitle = await parseOrPrompt("PR Title", args.join(" "))
+  let prTitle = await parseOrPrompt("PR Title", args.join(" "))
+
+  const noVerify = options.verify === false
 
   const prDescription = await parseOrPrompt("PR Description", options.description, true)
 
   const ticketNumber = (ticketUrl.split("/").pop() as string).toUpperCase()
 
-  return { ticketNumber, prTitle, prDescription }
+  return { ticketNumber, prTitle, prDescription, noVerify }
 }
 
 const parseOrPrompt = async (
