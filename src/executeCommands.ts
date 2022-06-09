@@ -14,7 +14,7 @@ export const executeCommands = async (
 
   const {
     status: { success: commitSuccess },
-  } = await exec(`git commit -m "${prTitle}"` + noVerify ? " --no-verify" : "")
+  } = await exec(`git commit -m "${prTitle}" ${noVerify ? " --no-verify" : ""}`)
 
   if (!commitSuccess) {
     console.error("\x1b[31m%s\x1b[0m", "Couldn't commit changes.")
@@ -25,7 +25,7 @@ export const executeCommands = async (
 
   const {
     status: { success: pushSuccess },
-  } = await exec(`git push --set-upstream origin ${branchName}` + noVerify ? " --no-verify" : "")
+  } = await exec(`git push --set-upstream origin ${branchName} ${noVerify ? " --no-verify" : ""}`)
 
   if (!pushSuccess) {
     console.error("\x1b[31m%s\x1b[0m", "Couldn't push changes.")
